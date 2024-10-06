@@ -13,7 +13,6 @@ import SwiftUI
 /// to manage the data and load users as needed. Each user is represented by a `UserRow`
 /// and can be tapped to navigate to a detailed view of that user.
 struct UserListView: View {
-    
     @ObservedObject var viewModel = UserViewModel()
     
     var body: some View {
@@ -27,16 +26,16 @@ struct UserListView: View {
                         }
                         .buttonStyle(PlainButtonStyle())
                     }
-                    // Loading indicator
+                    
                     if viewModel.isLoading {
                         ProgressView()
                             .padding()
                     }
                     
-                    // Invisible spacer to trigger loading more
                     GeometryReader { geometry in
-                        Color.clear.preference(key: ScrollViewPositionKey.self,
-                                               value: geometry.frame(in: .global).maxY)
+                        Color.clear
+                            .preference(key: ScrollViewPositionKey.self,
+                                        value: geometry.frame(in: .global).maxY)
                     }
                     .frame(height: 20)
                 }
@@ -49,10 +48,8 @@ struct UserListView: View {
                 }
             }
             .onPreferenceChange(ScrollViewPositionKey.self) { position in
-                if position < UIScreen.main.bounds.height {
-                    if !viewModel.isLoading {
-                        viewModel.loadUsers(loadMore: true)
-                    }
+                if position < UIScreen.main.bounds.height && !viewModel.isLoading {
+                    viewModel.loadUsers(loadMore: true)
                 }
             }
             .navigationTitle("Github Users")
@@ -75,7 +72,6 @@ struct ScrollViewPositionKey: PreferenceKey {
 ///
 /// Previews are essential for rapid UI development and testing, as they allow
 /// developers to see changes in real-time without having to run the full application.
-
 struct UserListView_Previews: PreviewProvider {
     static var previews: some View {
         UserListView()

@@ -16,6 +16,10 @@ class UserViewModel : ObservableObject {
     @Published var isLoadingUserDetail: Bool = false
     @Published var userDetailError: Error?
 
+    private let cacheManager = CacheManager.shared
+    private let usersCacheKey = "cachedUsers"
+    private let userDetailCachePrefix = "userDetail_"
+
     private var userService = UserService()
     @Published var since = 0
     
@@ -29,6 +33,8 @@ class UserViewModel : ObservableObject {
     /// This function fetches users, updates the view model's state,
     /// and handles caching. It manages loading state, error handling,
     /// and updates the user list and pagination.
+    /// 
+    /// - Parameter loadMore: A boolean indicating whether to load more users or start from the beginning.
     func loadUsers(loadMore: Bool = false) {
         guard !isLoading else { return }
         
@@ -67,11 +73,18 @@ class UserViewModel : ObservableObject {
     
     /// Fetches detailed information for a specific GitHub user.
     ///
-    /// This function calls the UserService to retrieve detailed information for a given user.
-    /// It updates the `selectedUserDetail` property with the fetched data or logs an error if the fetch fails.
+    /// This function first checks the cache for user details. If found, it updates the view model immediately.
+    /// Otherwise, it calls the UserService to retrieve detailed information for the given user.
+    /// It updates the `selectedUserDetail` property with the fetched data or sets an error if the fetch fails.
     ///
     /// - Parameter loginUserName: The username of the GitHub user to fetch details for.
     func loadUserDetail(for loginUserName: String) {
+        if let cachedUserDetail = cacheManager.get(forKey: userDetailCacheKey(for: loginUserName)),
+           let userDetail = try? JSONDecoder().decode(UserDetail.self, from: cachedUserDetail) {
+            self.selectedUserDetail = userDetail
+            return
+        }
+        
         isLoadingUserDetail = true
         userDetailError = nil
         
@@ -91,37 +104,41 @@ class UserViewModel : ObservableObject {
         }
     }
 
-    /// Caches the provided users in UserDefaults.
+    /// Caches the provided users using CacheManager.
     ///
-    /// This function encodes the given array of users and stores it in UserDefaults
-    /// for later retrieval. If an error occurs during encoding, it's logged to the console.
+    /// This function encodes the given array of users and stores it in CacheManager
+    /// for later retrieval. If an error occurs during encoding, it's silently ignored.
     ///
     /// - Parameter users: An array of User objects to be cached.
     private func cacheUsers(_ users: [User]) {
-        do {
-            let encodedData = try JSONEncoder().encode(users)
-            UserDefaults.standard.set(encodedData, forKey: "cachedUsers")
-        } catch {
-            print("Error caching users: \(error)")
+        if let encodedData = try? JSONEncoder().encode(users) {
+            cacheManager.set(encodedData, forKey: usersCacheKey)
         }
     }
-       
-    /// Loads previously cached users from UserDefaults.
+    
+    /// Loads previously cached users from CacheManager.
     ///
-    /// This function attempts to retrieve and decode user data stored in UserDefaults
-    /// under the key "cachedUsers". If successful, it updates the `users` array and
-    /// the `since` property. If an error occurs during decoding, it's printed to the console.
+    /// This function attempts to retrieve user data stored in CacheManager
+    /// under the key defined by `usersCacheKey`. If successful, it updates the `users` array and
+    /// the `since` property on the main thread. If no cached data is found, no action is taken.
     private func loadCachedUsers() {
-           if let cachedUsersData = UserDefaults.standard.data(forKey: "cachedUsers") {
-               do {
-                   let decodedUsers = try JSONDecoder().decode([User].self, from: cachedUsersData)
-                   DispatchQueue.main.async {
-                       self.users = decodedUsers
-                       self.since = decodedUsers.last?.id ?? 0
-                   }
-               } catch {
-                   print("Error decoding cached users: \(error)")
-               }
-           }
+        if let cachedData = cacheManager.get(forKey: usersCacheKey),
+           let decodedUsers = try? JSONDecoder().decode([User].self, from: cachedData) {
+            DispatchQueue.main.async {
+                self.users = decodedUsers
+                self.since = decodedUsers.last?.id ?? 0
+            }
+        }
+    }
+   
+    /// Generates a unique cache key for a user's detail information.
+    ///
+    /// This function creates a cache key by combining a prefix with the user's login name.
+    /// This ensures that each user's details are stored under a unique key in the cache.
+    ///
+    /// - Parameter loginUserName: The login name of the user.
+    /// - Returns: A string representing the unique cache key for the user's details.
+    private func userDetailCacheKey(for loginUserName: String) -> String {
+        return userDetailCachePrefix + loginUserName
     }
 }

@@ -12,16 +12,16 @@ import Foundation
 /// Provides methods to set, get, remove, and clear cached items.
 class CacheManager {
     static let shared = CacheManager()
-    private let cache = NSCache<NSString, AnyObject>()
+    private let cache = NSCache<NSString, NSData>()
     
     private init() {}
     
-    func set<T: AnyObject>(_ object: T, forKey key: String) {
-        cache.setObject(object, forKey: key as NSString)
+    func set(_ data: Data, forKey key: String) {
+        cache.setObject(data as NSData, forKey: key as NSString)
     }
     
-    func get<T: AnyObject>(forKey key: String) -> T? {
-        return cache.object(forKey: key as NSString) as? T
+    func get(forKey key: String) -> Data? {
+        return cache.object(forKey: key as NSString) as Data?
     }
     
     func remove(forKey key: String) {

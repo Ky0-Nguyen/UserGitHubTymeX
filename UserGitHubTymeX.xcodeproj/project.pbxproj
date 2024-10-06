@@ -28,6 +28,7 @@
 		7D23AF032CAE7BA90030F18C /* UserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D23AF022CAE7BA90030F18C /* UserDetail.swift */; };
 		7D995D0D2CB265B100D2DF4A /* StatContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D995D0C2CB265B100D2DF4A /* StatContent.swift */; };
 		7D995D0F2CB2664C00D2DF4A /* BlogContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D995D0E2CB2664C00D2DF4A /* BlogContent.swift */; };
+		7D995D112CB26EB000D2DF4A /* Documentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D995D102CB26EB000D2DF4A /* Documentation.swift */; };
 		7DC8FBE52CB0FE7A00A3F187 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC8FBE42CB0FE7A00A3F187 /* BaseAPI.swift */; };
 		7DC8FBE72CB1128B00A3F187 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC8FBE62CB1128B00A3F187 /* WebView.swift */; };
 /* End PBXBuildFile section */
@@ -75,6 +76,7 @@
 		7D23AF022CAE7BA90030F18C /* UserDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetail.swift; sourceTree = "<group>"; };
 		7D995D0C2CB265B100D2DF4A /* StatContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatContent.swift; sourceTree = "<group>"; };
 		7D995D0E2CB2664C00D2DF4A /* BlogContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogContent.swift; sourceTree = "<group>"; };
+		7D995D102CB26EB000D2DF4A /* Documentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Documentation.swift; sourceTree = "<group>"; };
 		7DC8FBE42CB0FE7A00A3F187 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
 		7DC8FBE62CB1128B00A3F187 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +142,7 @@
 				7D0C41A12CAD2B9B009E7DC1 /* UserGitHubTymeX.entitlements */,
 				7D0C419A2CAD2B99009E7DC1 /* UserGitHubTymeX.xcdatamodeld */,
 				7D0C41A22CAD2B9B009E7DC1 /* Preview Content */,
+				7D995D102CB26EB000D2DF4A /* Documentation.swift */,
 			);
 			path = UserGitHubTymeX;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				7D0C419C2CAD2B99009E7DC1 /* UserGitHubTymeX.xcdatamodeld in Sources */,
 				7DC8FBE52CB0FE7A00A3F187 /* BaseAPI.swift in Sources */,
 				7DC8FBE72CB1128B00A3F187 /* WebView.swift in Sources */,
+				7D995D112CB26EB000D2DF4A /* Documentation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
