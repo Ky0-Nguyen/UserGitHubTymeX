@@ -6,6 +6,8 @@
 //
 
 import Foundation
+
+/// Represents a GitHub user.
 struct User: Codable, Identifiable {
     let id: Int
     let login: String

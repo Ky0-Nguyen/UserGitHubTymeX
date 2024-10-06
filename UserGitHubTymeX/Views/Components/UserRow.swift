@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/// UserRow is a SwiftUI View component that displays information about a GitHub user.
+/// It shows the user's avatar, username, and additional details if available.
+/// The view adapts its content based on whether it's displaying basic user info or detailed user info.
 struct UserRow: View {
     let user: User?
     let userDetail: UserDetail?
@@ -18,19 +21,28 @@ struct UserRow: View {
     }
     
     private var avatarSize: CGFloat {
+        120
+    }
+    
+    private var avatarSizeComponent: CGFloat {
         150
     }
 
     var body: some View {
         HStack(alignment: .top) {
                 if let avatarUrl = user?.avatar_url ?? userDetail?.avatar_url  {
-                    AsyncImage(url: URL(string: avatarUrl)) { image in
-                        image.resizable()
-                    } placeholder: {
-                        ProgressView()
+                    HStack {
+                        AsyncImage(url: URL(string: avatarUrl)) { image in
+                            image.resizable()
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .frame(width: avatarSize, height: avatarSize)
+                        .clipShape(Circle())
                     }
-                    .frame(width: avatarSize, height: avatarSize)
-                    .clipShape(Circle())
+                    .frame(width: avatarSizeComponent, height: avatarSizeComponent)
+                    .background(Color(red: 245/255, green: 245/255, blue: 245/255))
+                    .cornerRadius(16)
                 }
                 
                 VStack(alignment: .leading, spacing: 8) {

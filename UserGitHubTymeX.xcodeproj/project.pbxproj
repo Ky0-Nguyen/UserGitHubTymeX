@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D02FD8A2CB0E94F00FF6D38 /* UserViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D02FD892CB0E94F00FF6D38 /* UserViewModelTests.swift */; };
 		7D0C41972CAD2B99009E7DC1 /* UserGitHubTymeXApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0C41962CAD2B99009E7DC1 /* UserGitHubTymeXApp.swift */; };
 		7D0C41992CAD2B99009E7DC1 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0C41982CAD2B99009E7DC1 /* Persistence.swift */; };
 		7D0C419C2CAD2B99009E7DC1 /* UserGitHubTymeX.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D0C419A2CAD2B99009E7DC1 /* UserGitHubTymeX.xcdatamodeld */; };
@@ -22,10 +23,13 @@
 		7D23AEEF2CAE51990030F18C /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D23AEEE2CAE51990030F18C /* UserListView.swift */; };
 		7D23AEF12CAE51A90030F18C /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D23AEF02CAE51A90030F18C /* UserDetailView.swift */; };
 		7D23AEF52CAE51F70030F18C /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D23AEF42CAE51F70030F18C /* CacheManager.swift */; };
-		7D23AEF92CAE524E0030F18C /* UserViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D23AEF82CAE524E0030F18C /* UserViewModelTests.swift */; };
 		7D23AEFB2CAE58670030F18C /* UserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D23AEFA2CAE58670030F18C /* UserServiceTests.swift */; };
 		7D23AF012CAE5C6B0030F18C /* UserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D23AF002CAE5C6B0030F18C /* UserRow.swift */; };
 		7D23AF032CAE7BA90030F18C /* UserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D23AF022CAE7BA90030F18C /* UserDetail.swift */; };
+		7D995D0D2CB265B100D2DF4A /* StatContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D995D0C2CB265B100D2DF4A /* StatContent.swift */; };
+		7D995D0F2CB2664C00D2DF4A /* BlogContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D995D0E2CB2664C00D2DF4A /* BlogContent.swift */; };
+		7DC8FBE52CB0FE7A00A3F187 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC8FBE42CB0FE7A00A3F187 /* BaseAPI.swift */; };
+		7DC8FBE72CB1128B00A3F187 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC8FBE62CB1128B00A3F187 /* WebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D02FD892CB0E94F00FF6D38 /* UserViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModelTests.swift; sourceTree = "<group>"; };
 		7D0C41932CAD2B99009E7DC1 /* UserGitHubTymeX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UserGitHubTymeX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D0C41962CAD2B99009E7DC1 /* UserGitHubTymeXApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGitHubTymeXApp.swift; sourceTree = "<group>"; };
 		7D0C41982CAD2B99009E7DC1 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -65,10 +70,13 @@
 		7D23AEEE2CAE51990030F18C /* UserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
 		7D23AEF02CAE51A90030F18C /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		7D23AEF42CAE51F70030F18C /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
-		7D23AEF82CAE524E0030F18C /* UserViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModelTests.swift; sourceTree = "<group>"; };
 		7D23AEFA2CAE58670030F18C /* UserServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceTests.swift; sourceTree = "<group>"; };
 		7D23AF002CAE5C6B0030F18C /* UserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRow.swift; sourceTree = "<group>"; };
 		7D23AF022CAE7BA90030F18C /* UserDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetail.swift; sourceTree = "<group>"; };
+		7D995D0C2CB265B100D2DF4A /* StatContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatContent.swift; sourceTree = "<group>"; };
+		7D995D0E2CB2664C00D2DF4A /* BlogContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogContent.swift; sourceTree = "<group>"; };
+		7DC8FBE42CB0FE7A00A3F187 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
+		7DC8FBE62CB1128B00A3F187 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				7D23AEEA2CAE4E630030F18C /* UserService.swift */,
+				7DC8FBE42CB0FE7A00A3F187 /* BaseAPI.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -207,8 +216,8 @@
 		7D23AEF32CAE51BF0030F18C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				7D23AEF82CAE524E0030F18C /* UserViewModelTests.swift */,
 				7D23AEFA2CAE58670030F18C /* UserServiceTests.swift */,
+				7D02FD892CB0E94F00FF6D38 /* UserViewModelTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -217,6 +226,9 @@
 			isa = PBXGroup;
 			children = (
 				7D23AF002CAE5C6B0030F18C /* UserRow.swift */,
+				7DC8FBE62CB1128B00A3F187 /* WebView.swift */,
+				7D995D0C2CB265B100D2DF4A /* StatContent.swift */,
+				7D995D0E2CB2664C00D2DF4A /* BlogContent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -352,8 +364,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D0C41972CAD2B99009E7DC1 /* UserGitHubTymeXApp.swift in Sources */,
-				7D23AEF92CAE524E0030F18C /* UserViewModelTests.swift in Sources */,
 				7D0C41992CAD2B99009E7DC1 /* Persistence.swift in Sources */,
+				7D995D0D2CB265B100D2DF4A /* StatContent.swift in Sources */,
 				7D23AF012CAE5C6B0030F18C /* UserRow.swift in Sources */,
 				7D23AEEB2CAE4E630030F18C /* UserService.swift in Sources */,
 				7D23AEEF2CAE51990030F18C /* UserListView.swift in Sources */,
@@ -362,8 +374,11 @@
 				7D0C419E2CAD2B99009E7DC1 /* ContentView.swift in Sources */,
 				7D23AEF52CAE51F70030F18C /* CacheManager.swift in Sources */,
 				7D23AEE92CAE4E0A0030F18C /* User.swift in Sources */,
+				7D995D0F2CB2664C00D2DF4A /* BlogContent.swift in Sources */,
 				7D23AEED2CAE4FBA0030F18C /* UserViewModel.swift in Sources */,
 				7D0C419C2CAD2B99009E7DC1 /* UserGitHubTymeX.xcdatamodeld in Sources */,
+				7DC8FBE52CB0FE7A00A3F187 /* BaseAPI.swift in Sources */,
+				7DC8FBE72CB1128B00A3F187 /* WebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D23AEFB2CAE58670030F18C /* UserServiceTests.swift in Sources */,
+				7D02FD8A2CB0E94F00FF6D38 /* UserViewModelTests.swift in Sources */,
 				7D0C41AE2CAD2B9C009E7DC1 /* UserGitHubTymeXTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

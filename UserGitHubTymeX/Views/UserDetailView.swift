@@ -7,100 +7,76 @@
 
 import SwiftUI
 
+/// UserDetailView displays detailed information about a GitHub user.
+/// It shows the user's avatar, name, location, followers, and following count.
+/// The view uses a UserViewModel to fetch and manage the user data.
+/// It displays a loading indicator while fetching data and handles potential errors.
+/// The layout is responsive and adapts to different screen sizes.
 struct UserDetailView: View {
     @ObservedObject var viewModel = UserViewModel()
-
     let loginUsername: String
     @State private var isLoading = true
-    private var imageSize: CGFloat {
-        100
-    }
+    
+    private let imageSize: CGFloat = 80
+    private let imageColor = Color(red: 224/255, green: 224/255, blue: 224/255)
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 if isLoading {
-                     ProgressView("Loading user details...")
-                    .onAppear {
-                        viewModel.loadUserDetail(for: loginUsername)
-                        isLoading = false
-                    }
+                    ProgressView("Loading user details...")
+                        .onAppear {
+                            viewModel.loadUserDetail(for: loginUsername)
+                            isLoading = false
+                        }
                 } else if let userDetail = viewModel.selectedUserDetail {
-                    VStack(alignment: .leading, spacing: 10) {
-                            UserRow(user: nil, userDetail: userDetail)
-                        Spacer()
-                        HStack(spacing: 20) {
-                                Spacer()
-                                VStack {
-                                    Image(systemName: "person.2")
-                                        .font(.system(size: 24))
-                                    Text("\(userDetail.followers ?? 0)")
-                                        .font(.headline)
-                                    Text("Followers")
-                                        .font(.caption)
-                                        .foregroundColor(.secondary)
-                                }
-                                .padding()
-                                .background(Color(.systemBackground))
-                                .cornerRadius(imageSize/2)
-                                .shadow(radius: 50)
-                                .frame(width: imageSize, height: imageSize)
-                                Spacer()
-                                VStack {
-                                    Image(systemName: "person.2.fill")
-                                        .font(.system(size: 24))
-                                    Text("\(userDetail.following ?? 0)")
-                                        .font(.headline)
-                                    Text("Following")
-                                        .font(.caption)
-                                        .foregroundColor(.secondary)
-                                }
-                                .padding()
-                                .background(Color(.systemBackground))
-                                .cornerRadius(imageSize/2)
-                                .shadow(radius: 50)
-                                .frame(width: imageSize, height: imageSize)
-                                Spacer()
-                            }
-            
-                        
-                    
-            
-                    if let blog = userDetail.blog, !blog.isEmpty {
-                        Spacer()
-                        Spacer()
-                        Link(destination: URL(string: blog) ?? URL(string: "https://github.com")!) {
-                            HStack {
-                                Image(systemName: "link")
-                                Text("Blog")
-                                Spacer()
-                                Image(systemName: "arrow.up.right.square")
-                            }
-                        }
-                        .padding()
-                        .background(Color(.systemBackground))
-                        .cornerRadius(10)
-                        .shadow(radius: 5)
-                        
-                        Link(destination: URL(string: blog) ?? URL(string: "https://github.com")!) {
-                            HStack {
-                                Image(systemName: "link")
-                                Text("Social")
-                                Spacer()
-                                Image(systemName: "arrow.up.right.square")
-                            }
-                        }
-                        .padding()
-                        .background(Color(.systemBackground))
-                        .cornerRadius(10)
-                        .shadow(radius: 5)
-                    }
-                }}
+                    UserDetailContent(userDetail: userDetail, imageSize: imageSize, imageColor: imageColor)
+                }
             }
             .padding()
         }
-        .background(Color(.systemGroupedBackground))
+        .background(Color(.clear))
         .navigationTitle("User Details")
+    }
+}
+
+/// Displays the detailed content for a GitHub user.
+/// This view is responsible for presenting the user's information, including their avatar, name,
+/// follower and following counts, and blog link if available.
+struct UserDetailContent: View {
+    let userDetail: UserDetail
+    let imageSize: CGFloat
+    let imageColor: Color
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            UserRow(user: nil, userDetail: userDetail)
+            Spacer(minLength: 32)
+            HStack(spacing: 20) {
+                Spacer()
+                StatConent(icon: "person.2.fill", value: userDetail.followers ?? 0, label: "Followers", target: 100)
+                Spacer()
+                StatConent(icon: "rosette", value: userDetail.following ?? 0, label: "Following", target: 10)
+                Spacer()
+            }
+            
+            if let blog = userDetail.blog, !blog.isEmpty {
+                Spacer(minLength: 32)
+                BlogContent(blog: blog)
+            }
+        }
+    }
+}
+
+/// This view fetches and presents comprehensive information about a specific GitHub user,
+/// including their avatar, name, bio, location, and blog link if available.
+/// It uses a `UserViewModel` to manage the data fetching process.
+struct UserDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            UserDetailView(loginUsername: "octocat")
+                .environmentObject(UserViewModel())
+        }
     }
 }
 

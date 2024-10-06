@@ -11,32 +11,66 @@ import XCTest
 final class UserServiceTests: XCTestCase {
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        print("Setting up UserServiceTests")
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        print("Tearing down UserServiceTests")
     }
 
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+        // Given
+        let expectation = self.expectation(description: "Example test expectation")
+        let service = UserService()
+        
+        // When
+        service.fetchUsers(since: 0) { result in
+            // Then
+            switch result {
+            case .success(let users):
+                XCTAssertFalse(users.isEmpty, "Fetched users array should not be empty")
+                XCTAssertGreaterThan(users.count, 0, "There should be at least one user fetched")
+                
+                if let firstUser = users.first {
+                    XCTAssertGreaterThan(firstUser.id, 0, "User ID should be greater than 0")
+                    XCTAssertFalse(firstUser.login.isEmpty, "User login should not be empty")
+                    XCTAssertFalse(firstUser.avatar_url.isEmpty, "User avatar URL should not be empty")
+                }
+            case .failure(let error):
+                XCTFail("Fetching users failed with error: \(error)")
+            }
+            
+            expectation.fulfill()
+        }
+        
+        // Wait for the expectation to be fulfilled
+        waitForExpectations(timeout: 10, handler: nil)
     }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {
-            // Put the code you want to measure the time of here.
+            // Measure the performance of fetching users
+            let service = UserService()
+            let expectation = self.expectation(description: "Fetch users performance")
+            
+            service.fetchUsers(since: 0) { result in
+                switch result {
+                case .success(let users):
+                    XCTAssertFalse(users.isEmpty, "Fetched users should not be empty")
+                case .failure(let error):
+                    XCTFail("Fetching users failed with error: \(error)")
+                }
+                expectation.fulfill()
+            }
+            
+            waitForExpectations(timeout: 10, handler: nil)
         }
     }
     
+    
     func testFetchUsers() {
         let service = UserService()
-        
-        let expectation = XCTestExpectation(description: "Fetch users from API")
         
         service.fetchUsers(since: 0) { result in
             switch result {

@@ -6,6 +6,8 @@
 //
 
 import Foundation
+
+/// Represents detailed information about a GitHub user.
 struct UserDetail: Codable, Identifiable {
     let id: Int
     let login: String
